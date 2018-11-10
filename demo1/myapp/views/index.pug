@@ -1,0 +1,35 @@
+extends layout
+
+block content
+  .row
+    h2 设备控制
+    .col-md-4.col-xs-12.col-sm-6
+      select.form-control
+        each equipment in tcpServer.equipmentArray
+          option #{equipment.addr} - #{equipment.id} 
+
+    button#open.btn.btn-success(type='button') 开灯
+    button#close.btn.btn-warning(type='button') 关灯  
+  .row
+    h2 设备列表
+    if tcpServer.equipmentArray.length === 0
+      h4 当前没有设备连接上来
+    else
+      table.table.table-striped
+        tbody
+          tr
+            th #
+            th IP地址
+            th ID号
+            th 最后上传的数据
+        tbody
+          each equipment,index in tcpServer.equipmentArray
+            tr
+              td #{index}
+              td #{equipment.addr}
+              td #{equipment.id} 
+              td #{equipment.lastValue || '无'} 
+  script(src='javascripts/index.js')
+
+
+

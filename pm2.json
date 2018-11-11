@@ -1,0 +1,6 @@
+{
+  "apps":[
+    {"name":"base-tcp1","script":"./base/tcp1/tcp1.js"},
+    {"name":"demo1","script":"./demo1/myapp/bin/www"}
+  ]
+}

@@ -5,9 +5,17 @@
 [软硬结合](https://www.scaugreen.cn/posts/44755/)
 
 ## 其它说明
-- 这个教程之前是要本地浏览的形式做的，需要读者先clone此项目到本地，才能进行阅读，但发现好多新手会卡在github上。[旧版教程（已弃用）-百度云备份](https://pan.baidu.com/s/1TcUtfI5hFedj_RL6j8QacQ)
+- 这个教程之前是要本地浏览的形式做的，需要读者先clone此项目到本地，才能进行阅读，但发现好多新手会卡在github上。[旧版教程备份（已弃用）-百度云](https://pan.baidu.com/s/1TcUtfI5hFedj_RL6j8QacQ)
 - 为了降低阅读门槛，我重新制作并发布在线教程。[软硬结合-在线访问](https://www.scaugreen.cn/posts/44755/)
 
 ## 文件目录说明
+- base : 各基础教程代码。详情查看该目录下的README.md。
 - demo1 ：demo1的源代码。详情查看该目录下的README.md。
+- pm2.json : 使用pm2启动时的配置文件
+
+## 端口使用情况
+base-tcp1: 9001
+
+demo1-tcp: 9002
+demo1-http: 8001
 

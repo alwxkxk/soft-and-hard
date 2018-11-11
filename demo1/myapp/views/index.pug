@@ -28,7 +28,7 @@ block content
               td #{index}
               td #{equipment.addr}
               td #{equipment.id} 
-              td #{equipment.lastValue || '无'} 
+              td(style="overflow: hidden;") #{equipment.lastValue || '无'} 
   script(src='javascripts/index.js')
 
 

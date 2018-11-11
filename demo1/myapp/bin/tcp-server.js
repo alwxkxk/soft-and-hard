@@ -27,7 +27,12 @@ const server = net.createServer((socket)=>{
 		console.log(addr,socket.id,"close")
 		console.log("equipmentArray.length:",equipmentArray.length)
 		deleteEquipment(socket.id,socket.addr)
-  })
+	})
+	
+	socket.on('error',()=>{
+		console.log(addr,socket.id,"error")
+		deleteEquipment(socket.id,socket.addr)
+	})
 })
 
 server.on("error",(err)=>{

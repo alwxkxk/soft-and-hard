@@ -2,6 +2,7 @@
 const net = require('net')
 const PORT = "9002"
 const equipmentArray = []
+const TIMEOUT = 10000; // 10秒没接收到数据就断开连接
 //创建服务器对象
 const server = net.createServer((socket)=>{
   //connect
@@ -33,6 +34,14 @@ const server = net.createServer((socket)=>{
 		console.log(addr,socket.id,"error")
 		deleteEquipment(socket.id,socket.addr)
 	})
+
+	socket.setTimeout(TIMEOUT);
+	// 超过一定时间 没接收到数据，就主动断开连接。
+	socket.on('timeout', () => {
+		console.log(socket.id,socket.addr,'socket timeout');
+		socket.end();
+	});
+
 })
 
 server.on("error",(err)=>{

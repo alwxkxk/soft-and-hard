@@ -47,7 +47,10 @@ server.listen({port: PORT,host: '0.0.0.0'}, () => {
 
 // 给列表添加设备
 function addEquipment(socket) {
+	// 先从列表删除旧的同名连接
+	deleteEquipment(socket.id,socket.addr)
 	equipmentArray.push(socket)
+	
 }
 
 // 从列表中删除设备

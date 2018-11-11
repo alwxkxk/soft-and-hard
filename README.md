@@ -11,11 +11,11 @@
 ## 文件目录说明
 - base : 各基础教程代码。详情查看该目录下的README.md。
 - demo1 ：demo1的源代码。详情查看该目录下的README.md。
-- pm2.json : 使用pm2启动时的配置文件
+- pm2.json : 使用pm2启动时的配置文件`pm2 start pm2.json`，启动前需要先安装项目依赖。
 
 ## 端口使用情况
-base-tcp1: 9001
+- base-tcp1: 9001
 
-demo1-tcp: 9002
-demo1-http: 8001
+- demo1-tcp: 9002
+- demo1-http: 8001
 

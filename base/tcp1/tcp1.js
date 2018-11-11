@@ -29,6 +29,11 @@ const server = net.createServer((socket)=>{
   socket.on('close',()=>{
     console.log(addr,"close")
   })
+
+  socket.on('error',(err)=>{
+		console.log("error",err)
+  })
+  
 })
 
 server.on("error",(err)=>{

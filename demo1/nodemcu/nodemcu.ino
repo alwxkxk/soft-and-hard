@@ -1,7 +1,7 @@
 #include <ESP8266WiFi.h>
 
-const char* ssid = "you-wifi";
-const char* password = "you-wifi-password";
+const char* ssid = "huayuan-iot";
+const char* password = "huayuan-iot666";
 
 const char* host = "119.29.107.47";
 const int port = 9002;

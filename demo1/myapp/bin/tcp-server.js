@@ -39,6 +39,7 @@ const server = net.createServer((socket)=>{
 	// 超过一定时间 没接收到数据，就主动断开连接。
 	socket.on('timeout', () => {
 		console.log(socket.id,socket.addr,'socket timeout');
+		deleteEquipment(socket.id,socket.addr)
 		socket.end();
 	});
 

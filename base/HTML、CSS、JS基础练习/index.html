@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <title>HTML、CSS、JS基础练习</title>
+  <!-- 引入样式文件，./style/index.css是相对路径，指当前路径下的/style/index.css文件，下面路径同理 -->
+  <link rel="stylesheet" href="./style/index.css">
+</head>
+<body>
+  <h1 class="title">集团总部大厦</h1>
+  <div class="flex">
+      <div class="block">
+          <img class="block-img" src="./images/light-on.png" alt="" style="">
+          <div class="content">
+            <div class="text">
+              <p class="title">总数：</p>
+              <p style="color:white;">2424</p>
+            </div>
+            <div class="text">
+              <p class="title">开启：</p>
+              <p id="open-light-number" style="color:white;">1221</p>
+            </div>
+            <div class="text">
+              <p class="title">报修：</p>
+              <p style="color:#fe3e46;"> 2</p>
+            </div>            
+          </div>
+      </div>
+
+      <div class="block">
+          <img class="block-img" src="./images/air-conditioning.png" alt="" style="">
+          <div class="content">
+            <div class="text">
+              <p class="title">平均：</p>
+              <p style="color:white;">24℃</p>
+            </div>
+            <div class="text">
+              <p class="title">最低：</p>
+              <p style="color:white;">21℃</p>
+            </div>
+            <div class="text">
+              <p class="title">最高：</p>
+              <p style="color:#fe3e46;"> 28℃</p>
+            </div>            
+          </div>
+      </div>
+
+  </div>
+  <p style="position: absolute;bottom: 1px;right: 1px;color: white;">联系后勤部：316613</p>
+
+  <!-- 引入脚本文件 -->
+  <script src="./javascript/index.js"></script>
+</body>
+</html>

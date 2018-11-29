@@ -3,7 +3,7 @@
 
 ## 访问网址
 [软硬结合](https://www.scaugreen.cn/posts/44755/)
-![访问网址](http://ww1.sinaimg.cn/large/005BIQVbgy1fx40gppaitg31gy0ri4qv.gif)
+![访问网址](http://ww1.sinaimg.cn/large/005BIQVbgy1fxp2qxq4ccj31hc0q279i.jpg)
 
 ## 其它说明
 - 这个教程之前是要本地浏览的形式做的，需要读者先clone此项目到本地，才能进行阅读，但发现好多新手会卡在github上。[旧版教程备份（已弃用）-百度云](https://pan.baidu.com/s/1TcUtfI5hFedj_RL6j8QacQ)

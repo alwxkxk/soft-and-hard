@@ -10,7 +10,7 @@
 - 为了降低阅读门槛，我重新制作并发布在线教程。[软硬结合-在线访问](https://www.scaugreen.cn/posts/44755/)
 
 ## 文件目录说明
-- base : 各基础教程代码。详情查看该目录下的README.md。
+- 基础教程 : 各基础教程代码。详情查看该目录下的README.md。
 - demo1 ：demo1的源代码。详情查看该目录下的README.md。
 - pm2.json : 使用pm2启动时的配置文件`pm2 start pm2.json`，启动前需要先安装项目依赖。
 

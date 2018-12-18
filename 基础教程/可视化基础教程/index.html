@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <meta http-equiv="X-UA-Compatible" content="ie=edge">
+  <title>可视化基础教程</title>
+</head>
+<body>
+    <!-- 引入Echart脚本 -->
+  <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.min.js"></script>
+  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+  <div id="main" style="width: 600px;height:400px;"></div>
+  <script type="text/javascript">
+      // 基于准备好的dom，初始化echarts实例
+      var myChart = echarts.init(document.getElementById('main'));
+
+      // 指定图表的配置项和数据
+      var option = {
+        title: {
+          text: '实时温度'
+        },
+        xAxis: {
+          type: 'category',
+          data: []
+        },
+        yAxis: {
+          type: 'value'
+        },
+        series: [{
+          data: [],
+          type: 'line',
+          smooth: true
+        }]
+      };
+
+      // 使用刚指定的配置项和数据显示图表。
+      myChart.setOption(option);
+
+      setInterval(function () {
+        var tem = 20 + Math.random().toFixed(2) * 10;
+        tem = tem.toFixed(2); // 随机数模拟温度，只保留两位小数
+        var time = new Date();
+        option.xAxis.data.push(time.getMinutes()+':'+time.getSeconds());//给X轴 插入时间数据
+        option.series[0].data.push(tem);//给Y轴 插入温度数据
+
+        // 如果数据超过30个，把第一个数据删除。
+        if(option.xAxis.data.length > 30){
+          option.xAxis.data.shift()
+          option.series[0].data.shift()
+        }
+        myChart.setOption(option);
+      }, 1000);
+  </script>
+</body>
+</html>

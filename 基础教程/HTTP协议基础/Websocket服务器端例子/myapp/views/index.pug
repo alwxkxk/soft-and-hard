@@ -1,0 +1,9 @@
+extends layout
+
+block content
+  script(src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.min.js")
+  h1= title
+  p Welcome to #{title}
+  div#main(style="width: 600px;height:400px;")
+  script(src="/javascripts/index.js")
+  

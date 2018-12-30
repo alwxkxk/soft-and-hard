@@ -1,0 +1,44 @@
+html{
+  height: 100%;
+  width: 100%;
+}
+
+body{
+  background: url("../images/background.png") no-repeat;
+  background-size: cover;
+}
+
+.title{
+  text-align: center;
+  color: #48cfff;
+}
+
+.flex{
+  display: flex;
+}
+
+.block {
+  background: rgba(25,118,210,0.3);
+}
+
+.block-img{
+  padding:10px 0;
+  /* 令图片居中 */
+  display:block; 
+  margin:auto;
+  
+}
+
+.content{
+  text-align: center;
+}
+
+.text{
+  margin: 10px 20px;
+  font-size: 3em;
+}
+
+.text p{
+  /* 不换行 */
+  display: inline;
+}

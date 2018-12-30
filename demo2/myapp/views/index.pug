@@ -1,0 +1,68 @@
+extends layout
+
+block content
+  script(src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.min.js")
+  h1.title(style='font-size:5em;margin-bottom:5vh;') 智能宿舍
+  .container-fluid
+    .row
+      .col-md-4.col-sm-6
+        .block
+          img.block-img(src='./images/light-on.png', alt='', style='')
+          .content
+            .text
+              p.title 灯一：
+              p(style='color:white;') 开启
+            .text
+              p.title 灯二：
+              p(style='color:white;') 开启
+            .text
+              p.title 灯三：
+              p(style='color:white;') 关闭
+      .col-md-4.col-sm-6
+        .block
+          img.block-img(src='./images/air-conditioning.png', alt='', style='')
+          .content
+            .text
+              p.title 实时：
+              p(style='color:white;') 24 ℃
+            .text
+              p.title 最高：
+              p(style='color:white;') 27 ℃
+            .text
+              p.title 平均：
+              p(style='color:white;') 25 ℃
+
+    .row
+      .col-md-4.col-sm-6
+        .block
+          img.block-img(src='./images/meter.png', alt='', style='')
+          .content
+            .text
+              p.title 水表：
+              p(style='color:white;') 12 度
+            .text
+              p.title 电表：
+              p(style='color:white;') 36 度
+            .text
+              p.title 费用：
+              p(style='color:white;') 54 元
+
+      .col-md-4.col-sm-6
+        .block
+          img.block-img(src='./images/controller.png', alt='', style='')
+          .content
+            .text
+              p.title 灯管：
+              button.btn.btn-success.btn-lg(type="button") 开启
+            .text
+              p.title 空调：
+              button.btn.btn-success.btn-lg(type="button") 开启
+            .text
+              p.title 热水：
+              button.btn.btn-warning.btn-lg(type="button") 关闭
+     
+    .row
+      .col-md-12.col-sm-12
+        div#main(style="width: 100%;height:30vh;background-color: rgba(25,118,210,0.3);")
+      script(src="/javascripts/index.js")
+  

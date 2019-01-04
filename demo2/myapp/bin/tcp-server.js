@@ -1,8 +1,13 @@
 // 导入net模块:
 const net = require('net')
-const PORT = "9002"
+const PORT = "9003"
 const equipmentArray = []
-const TIMEOUT = 10000; // 10秒没接收到数据就断开连接
+const TIMEOUT = 10*1000; // 10秒没接收到数据就断开连接
+const mongodb = require('./mongodb.js')
+const websocket = require('./websocket.js')
+const tcpClient = require('./tcp-client.js')
+
+
 //创建服务器对象
 const server = net.createServer((socket)=>{
   //connect
@@ -15,18 +20,28 @@ const server = net.createServer((socket)=>{
 		socket.lastValue = data.toString('ascii')
 		console.log(str)
 
-    // demo1中，我们定义了，接收的第一条数据为设备id
+    // 接收的第一条数据为设备id
     if(!socket.id){
 			socket.id = data.toString('ascii')
 			socket.addr = addr
 			addEquipment(socket)
-    }
+		}
+		else{
+			//保存所接收到的数据
+			mongodb.insert({id:socket.id,data:socket.lastValue},function (err) {
+				if(err){
+					console.log(socket.id,"保存数据失败：",err)
+				}
+			})
+			//发送websocket消息 
+			websocket.sendData(socket.id,socket.lastValue)
+		}
   })
 
   // close
   socket.on('close',()=>{
 		console.log(addr,socket.id,"close")
-		console.log("equipmentArray.length:",equipmentArray.length)
+		// console.log("equipmentArray.length:",equipmentArray.length)
 		deleteEquipment(socket.id,socket.addr)
 	})
 	
@@ -52,7 +67,8 @@ server.on("error",(err)=>{
 
 //开启监听
 server.listen({port: PORT,host: '0.0.0.0'}, () => {
-  console.log('demo1 tcp server running on', server.address())
+	console.log('demo1 tcp server running on', server.address())
+	tcpClient.init()
 })
 
 // 给列表添加设备

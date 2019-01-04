@@ -5,5 +5,6 @@ demo2例程。
 npm install
 # 运行
 npm start
-# 访问localhost:3000
+# 访问localhost:8002
+# TCP 端口：9003
 ```

@@ -2,10 +2,14 @@
 const host = window.location.host
 // 创建websocket连接
 const socket = new WebSocket('ws://'+host);
+// 如果是部署到服务器并配置了SSL证书，应该使用wss协议 
+// const socket = new WebSocket('wss://'+host);
 
 // 如果建立连接
 socket.onopen=()=>{
   console.log("websocket connect!")
+  let data = JSON.stringify({equipmentId:'123456'})
+  socket.send(data)
 }
 
 // 监听接收数据
@@ -36,13 +40,17 @@ let myChart = echarts.init(document.getElementById('main'));
 
 // 指定图表的配置项和数据
 let option = {
+  color:'#fff',
   textStyle:{
     color:'#fff',
     fontWeight:900,
     fontSize:24
   },
   title: {
-    text: '实时温度'
+    text: '实时温度',
+    textStyle:{
+      color:'#fff'
+    }
   },
   xAxis: {
     type: 'category',

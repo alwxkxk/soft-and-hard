@@ -110,9 +110,22 @@ function findEquipment(id,addr) {
 	return result
 }
 
+// 在列表中找到某个id的设备，结果为数组，可能包含多个socket。
+function findEquipmentById(id) {
+	let result = []
+	let i
+
+	for(i=0;i<equipmentArray.length;i++){
+		if(equipmentArray[i].id === id){
+			result.push(equipmentArray[i])
+		}
+	}
+	return result
+}
+
 // 给设备发送控制命令
-function sentCommand(id,addr,command) {
-	let equipments = findEquipment(id,addr)
+function sentCommand(id,command) {
+	let equipments = findEquipmentById(id)
 	if(equipments.length === 0){
 		return;
 	}

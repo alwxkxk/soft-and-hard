@@ -10,7 +10,8 @@ function init() {
     //定时发送随机数
     let interval = setInterval(()=>{
       if(!client.destroyed){
-        client.write( String(20+Math.random().toFixed(2)*10))
+        let value = (20+Math.random()*10).toFixed(2)
+        client.write(String(value))
       }
       else{
         clearInterval(interval)

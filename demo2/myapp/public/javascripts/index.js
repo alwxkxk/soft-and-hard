@@ -1,5 +1,8 @@
 // 获取当前host，用于提供url以建立websocket
 const host = window.location.host
+// 从当前网址里获取设备id ,比如 https://127.0.0.1/equipmentId/789 分析得到设备ID为789，若没有则为123456
+let equipmentId = window.location.pathname.split("/")[2] || "123456"
+
 // 创建websocket连接
 const socket = new WebSocket('ws://'+host);
 // 如果是部署到服务器并配置了SSL证书，应该使用wss协议 
@@ -8,7 +11,7 @@ const socket = new WebSocket('ws://'+host);
 // 如果建立连接
 socket.onopen=()=>{
   console.log("websocket connect!")
-  let data = JSON.stringify({equipmentId:'123456'})
+  let data = JSON.stringify({equipmentId:equipmentId})
   socket.send(data)
 }
 
@@ -19,6 +22,7 @@ socket.onmessage=(msg)=>{
     // 将JSON字符串反转为JSON对象
     let data = JSON.parse(msg.data)
     data.forEach(d => {
+      //将接收到的数据 更新到echart图表里
       updateMyChart(d.time,d.value)
     });
   } catch (error) {
@@ -34,6 +38,15 @@ socket.onerror=(event)=>{
   console.log("websocket error:",event)
 }
 
+
+//给开关灯按钮添加事件，发起请求 POST /led/:id
+$('#open-led').click(()=>{
+  $.post('/led/'+equipmentId,{action:'open'})
+})
+
+$('#close-led').click(()=>{
+  $.post('/led/'+equipmentId,{action:'close'})
+})
 
 // 基于准备好的dom，初始化echarts实例
 let myChart = echarts.init(document.getElementById('main'));
@@ -69,10 +82,19 @@ let option = {
 // 使用刚指定的配置项和数据显示图表。
 myChart.setOption(option);
 
+$.get('/history/'+equipmentId,(data)=>{
+  console.log("history:",data)
+  data.forEach((v)=>{
+    updateMyChart(v.time,v.value)
+  })
+})
+
+
+// 给echart插入新数据
 function updateMyChart(time,value) {
   option.xAxis.data.push(time)
   option.series[0].data.push(value)
-  // 如果数据超过30个，把第一个数据删除。
+  // 如果数据超过10个，把第一个数据删除。
   if(option.xAxis.data.length > 10){
     option.xAxis.data.shift()
     option.series[0].data.shift()

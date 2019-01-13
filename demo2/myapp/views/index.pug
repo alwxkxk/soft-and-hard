@@ -2,7 +2,7 @@ extends layout
 
 block content
   script(src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.min.js")
-  h1.title(style='font-size:5em;margin-bottom:5vh;') 智能宿舍
+  h1.title(style='font-size:5em;margin-bottom:5vh;')= title
   .container-fluid
     .row
       .col-md-4.col-sm-6
@@ -23,8 +23,8 @@ block content
           img.block-img(src='./images/air-conditioning.png', alt='', style='')
           .content
             .text
-              p.title 实时：
-              p(style='color:white;') 24 ℃
+              p.title 最低：
+              p(style='color:white;') 22 ℃
             .text
               p.title 最高：
               p(style='color:white;') 27 ℃
@@ -52,13 +52,13 @@ block content
           .content
             .text
               p.title 灯管：
-              button.btn.btn-success.btn-lg(type="button") 开启
+              button#open-led.btn.btn-success.btn-lg(type="button") 开启
             .text
-              p.title 空调：
-              button.btn.btn-success.btn-lg(type="button") 开启
+              p.title 灯管：
+              button#close-led.btn.btn-warning.btn-lg(type="button") 关闭
             .text
-              p.title 热水：
-              button.btn.btn-warning.btn-lg(type="button") 关闭
+              p.title 门禁：
+              button.btn.btn-success.btn-lg(type="button") 开启
      
       .col-md-8.col-sm-12
         div#main(style="width: 100%;height:30vh;background-color: rgba(25,118,210,0.3);")

@@ -38,7 +38,7 @@ mongodb.insert = function(data,callback) {
 
 // 查找数据
 const findOptions={
-  limit:30,//返回最多30条数据
+  limit:10,//返回最多10条数据
   sort:{createdAt:-1}//返回最晚生成的数据
 }
 mongodb.find=function (data,callback) {

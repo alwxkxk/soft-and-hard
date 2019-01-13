@@ -82,16 +82,13 @@ let option = {
 // 使用刚指定的配置项和数据显示图表。
 myChart.setOption(option);
 
-$.get('/history/'+equipmentId,(data)=>{
-  console.log("history:",data)
-  data.forEach((v)=>{
-    updateMyChart(v.time,v.value)
-  })
-})
-
-
 // 给echart插入新数据
 function updateMyChart(time,value) {
+  //如果value不是数值则跳过
+  if(!$.isNumeric(value)){
+    return ;
+  }
+
   option.xAxis.data.push(time)
   option.series[0].data.push(value)
   // 如果数据超过10个，把第一个数据删除。
@@ -101,3 +98,13 @@ function updateMyChart(time,value) {
   }
   myChart.setOption(option);
 }
+
+//请求历史数据
+$.get('/history/'+equipmentId,(data)=>{
+  console.log("history:",data)
+  data.forEach((v)=>{
+    updateMyChart(v.time,v.value)
+  })
+})
+
+

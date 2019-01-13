@@ -1,10 +1,11 @@
 #include <ESP8266WiFi.h>
+
 //必须修改：填写你的WIFI帐号密码
 const char* ssid = "you-wifi";
 const char* password = "you-wifi-password";
 
 const char* host = "119.29.107.47";
-const int port = 9002;//demo1 tcp 使用 9002端口
+const int port = 9003;//demo2 tcp 使用 9003端口
 
 const char* id = "1234abcd";
 int tick = 1000;
@@ -62,7 +63,8 @@ void loop() {
       //若没收到TCP数据，每隔一段时间打印并发送tick值
       Serial.print("tem:");
       Serial.println(tick);
-      client.print(tick);
+      // TCP发送20-29之间随机数
+      client.print(20+random(0,10));
       tick++;
       delay(1000);
     }

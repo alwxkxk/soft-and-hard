@@ -8,6 +8,7 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: '软硬结合demo1',tcpServer:tcpServer });
 });
 
+// POST / 控制设备开关灯
 router.post('/',function(req, res, next) {
   let addr = req.body.addr
   let id = req.body.id

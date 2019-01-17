@@ -1,3 +1,5 @@
+//如果是nodemcu V3版，需要另外定义LED引脚
+//#define LED_BUILTIN 2 
 #include <ESP8266WiFi.h>
 //必须修改：填写你的WIFI帐号密码
 const char* ssid = "you-wifi";

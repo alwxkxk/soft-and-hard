@@ -17,10 +17,9 @@
 - Web上选择了无所不能的JavaScript，在教程中将会演示其在网页开发、小程序开发、桌面应用开发、服务器后端服务开发。
 - 整个教程里，推荐先用后学，先把项目跑起来看看效果，再按需学习相关知识，直到自己能把项目写出来。
 - demo1演示了最简的系统，实现软件显示硬件的数据，可控制硬件执行动作。
-![demo1示例](http://ww1.sinaimg.cn/large/005BIQVbgy1fwstl5y6srj30il0950tp.jpg)
+![demo1示例](http://ww1.sinaimg.cn/large/005BIQVbgy1fzboqhds5sj30lu0co75a.jpg)
 - 在demo1的基础上，demo2添加了MongoDB数据库、实时显示数据（websocket协议）、数据可视化(Echart图表)功能。
-![demo2主要流程图](http://ww1.sinaimg.cn/large/005BIQVbgy1fz5028sx4uj30qo0aj75r.jpg)
-
+![demo2主要流程图](http://ww1.sinaimg.cn/large/005BIQVbgy1fzbotaayifj30lu0coab7.jpg)
 ## 其它说明
 本教程是基于hexo博客系统搭建的，所以也可以理解为IOT博客，上面写了物联网教程《软硬结合》以及一系列相关文章。
 <!-- - 这个教程之前是要本地浏览的形式做的，需要读者先clone此项目到本地，才能进行阅读，但发现好多新手会卡在github上。[旧版教程备份（已弃用）-百度云](https://pan.baidu.com/s/1TcUtfI5hFedj_RL6j8QacQ)

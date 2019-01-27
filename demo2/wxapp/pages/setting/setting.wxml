@@ -1,0 +1,5 @@
+<!--setting.wxml-->
+<view>
+  <text>setting page</text>
+
+</view>

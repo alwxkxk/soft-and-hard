@@ -1,14 +1,31 @@
 <!--index.wxml-->
-<view class="container">
-  <text>index test</text>
-  <!-- <view class="userinfo">
-    <button wx:if="{{!hasUserInfo && canIUse}}" open-type="getUserInfo" bindgetuserinfo="getUserInfo"> 获取头像昵称 </button>
-    <block wx:else>
-      <image bindtap="bindViewTap" class="userinfo-avatar" src="{{userInfo.avatarUrl}}" mode="cover"></image>
-      <text class="userinfo-nickname">{{userInfo.nickName}}</text>
-    </block>
+<view>
+  <image src='../../images/background.png' class='background'></image>
+  <view style='text-align: center;font-size:24px;'>
+    <text class='white'>智慧宿舍</text>
   </view>
-  <view class="usermotto">
-    <text class="user-motto">{{motto}}</text>
-  </view> -->
+  
+  <view style='display:flex;margin-top:2vh;flex-direction:column;'>
+    <view class="block">
+      <image src='../../images/air-conditioning.png' class='block-img'></image>
+      <view>
+        <text class='title'>最低：</text>
+        <text class='white'>22 ℃</text>
+      </view>
+      <view>
+        <text class='title'>最高：</text>
+        <text class='white'>27 ℃</text>
+      </view>
+      <view>
+        <text class='title'>平均：</text>
+        <text class='white'>25 ℃</text>
+      </view>
+
+
+    </view>
+    <view class='block' style='height:200px;margin-top:5vh;'>
+      <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
+    </view>
+  </view>
 </view>
+

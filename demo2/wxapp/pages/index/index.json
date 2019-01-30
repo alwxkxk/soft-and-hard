@@ -1,4 +1,6 @@
 {
   "navigationBarTitleText": "监控面板",
-  "usingComponents": {}
+  "usingComponents": {
+    "ec-canvas": "../../ec-canvas/ec-canvas"
+  }
 }

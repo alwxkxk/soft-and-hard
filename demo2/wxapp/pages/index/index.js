@@ -1,6 +1,76 @@
 import * as echarts from '../../ec-canvas/echarts';
-
+let option = {
+  color: '#fff',
+  textStyle: {
+    color: '#fff',
+    fontWeight: 900,
+    fontSize: 24
+  },
+  title: {
+    text: '实时温度',
+    textStyle: {
+      color: '#fff'
+    }
+  },
+  xAxis: {
+    type: 'category',
+    data: []
+  },
+  yAxis: {
+    type: 'value'
+  },
+  series: [{
+    type: 'line',
+    data: []
+  }]
+};
+let myChart = null
 const app = getApp();
+
+// 给echart插入新数据
+function updateMyChart(time, value) {
+  option.xAxis.data.push(time)
+  option.series[0].data.push(value)
+  // 如果数据超过10个，把第一个数据删除。
+  if (option.xAxis.data.length > 10) {
+    option.xAxis.data.shift()
+    option.series[0].data.shift()
+  }
+  if (myChart){
+    myChart.setOption(option);
+  }
+}
+
+function initWebsocket(){
+  wx.connectSocket({
+    url: app.globalData.websocketURL
+  })
+
+  wx.onSocketOpen(function (res) {
+    //建立连接时，先发送equipmentId，以接收设备实时数据
+    let data = JSON.stringify({
+      equipmentId: app.globalData.equipmentId
+    })
+    wx.sendSocketMessage({data:data})
+  })
+
+  wx.onSocketMessage(function (msg) {
+    console.log('receive:', msg)
+    try {
+      // 将JSON字符串反转为JSON对象
+      let data = JSON.parse(msg.data)
+      data.forEach(d => {
+        //将接收到的数据 更新到echart图表里
+        updateMyChart(d.time, d.value)
+      });
+    } catch (error) {
+      console.log('error:', error)
+    }
+  })
+}
+
+
+
 
 function initChart(canvas, width, height) {
   const chart = echarts.init(canvas, null, {
@@ -8,62 +78,8 @@ function initChart(canvas, width, height) {
     height: height
   });
   canvas.setChart(chart);
-
-  var option = {
-    title: {
-      text: '测试下面legend的红色区域不应被裁剪',
-      left: 'center'
-    },
-    color: ["#37A2DA", "#67E0E3", "#9FE6B8"],
-    legend: {
-      data: ['A', 'B', 'C'],
-      top: 50,
-      left: 'center',
-      backgroundColor: 'red',
-      z: 100
-    },
-    grid: {
-      containLabel: true
-    },
-    tooltip: {
-      show: true,
-      trigger: 'axis'
-    },
-    xAxis: {
-      type: 'category',
-      boundaryGap: false,
-      data: ['周一', '周二', '周三', '周四', '周五', '周六', '周日'],
-      // show: false
-    },
-    yAxis: {
-      x: 'center',
-      type: 'value',
-      splitLine: {
-        lineStyle: {
-          type: 'dashed'
-        }
-      }
-      // show: false
-    },
-    series: [{
-      name: 'A',
-      type: 'line',
-      smooth: true,
-      data: [18, 36, 65, 30, 78, 40, 33]
-    }, {
-      name: 'B',
-      type: 'line',
-      smooth: true,
-      data: [12, 50, 51, 35, 70, 30, 20]
-    }, {
-      name: 'C',
-      type: 'line',
-      smooth: true,
-      data: [10, 30, 31, 50, 40, 20, 10]
-    }]
-  };
-
   chart.setOption(option);
+  myChart = chart;
   return chart;
 }
 
@@ -81,7 +97,40 @@ Page({
       onInit: initChart
     }
   },
-
-  onReady() {
+  openLED:function(){
+    wx.request({
+      url: app.globalData.requestHost + '/led/' + app.globalData.equipmentId,
+      data: {
+        action: 'open'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method:'POST',
+      success(res) {
+        console.log('open led',res.data)
+      }
+    })
+  },
+  closeLED: function () {
+    wx.request({
+      url: app.globalData.requestHost + '/led/' + app.globalData.equipmentId,
+      data: {
+        action: 'close'
+      },
+      header: {
+        'content-type': 'application/json' // 默认值
+      },
+      method: 'POST',
+      success(res) {
+        console.log('close led', res.data)
+      }
+    })
+  },
+  onShow() {
+    initWebsocket()
+  },
+  onHide(){
+    wx.closeSocket()
   }
 });

@@ -1,5 +1,6 @@
 <!--setting.wxml-->
 <view>
-  <text>setting page</text>
-
+  <text>设置设备ID：</text>
+  <input value="{{equipmentId}}" bindinput="bindKeyInput" style='border:1px solid #ccc;' placeholder='123456'/>
+  <text style='font-size:12px;color:#ccc;'>默认设备ID：123456,由模拟客户端产生的实时数据，其它设备ID需要自行连接硬件才能产生实时数据。</text>
 </view>

@@ -1,4 +1,8 @@
 /**index.wxss**/
+button{
+  width: 40%;
+  display: inline;
+}
 .background{
   position: absolute;
   width: 100%;

@@ -26,6 +26,11 @@
     <view class='block' style='height:200px;margin-top:5vh;'>
       <ec-canvas id="mychart-dom-line" canvas-id="mychart-line" ec="{{ ec }}"></ec-canvas>
     </view>
+
+    <view style='display:flex;margin-top:10px;'>
+      <button type="primary" bindtap='openLED'>开灯</button>
+      <button bindtap='closeLED'>关灯</button>
+    </view>
   </view>
 </view>
 

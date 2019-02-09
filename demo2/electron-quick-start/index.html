@@ -1,0 +1,104 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>软硬结合demo2</title>
+    <!-- 使Jquery正常使用 -->
+    <script>
+        window.nodeRequire = require;
+        delete window.require;
+        delete window.exports;
+        delete window.module;
+    </script>
+    <link rel="stylesheet" href="./stylesheets/style.css">
+    <script src="./javascripts/jquery.min.js"></script>
+    <link href="./stylesheets/bootstrap.min.css" rel="stylesheet">
+    <script src="./javascripts/bootstrap.min.js"></script>
+</head>
+
+<body>
+    <script src="./javascripts/echarts.min.js"></script>
+    <h1 class="title" style="font-size:5em;margin-bottom:5vh;"></h1>
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-4 col-sm-6">
+                <div class="block"><img class="block-img" src="./images/light-on.png" alt="">
+                    <div class="content">
+                        <div class="text">
+                            <p class="title">灯一：</p>
+                            <p style="color:white;">开启</p>
+                        </div>
+                        <div class="text">
+                            <p class="title">灯二：</p>
+                            <p style="color:white;">开启</p>
+                        </div>
+                        <div class="text">
+                            <p class="title">灯三：</p>
+                            <p style="color:white;">关闭</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="block"><img class="block-img" src="./images/air-conditioning.png" alt="">
+                    <div class="content">
+                        <div class="text">
+                            <p class="title">最低：</p>
+                            <p style="color:white;">22 ℃</p>
+                        </div>
+                        <div class="text">
+                            <p class="title">最高：</p>
+                            <p style="color:white;">27 ℃</p>
+                        </div>
+                        <div class="text">
+                            <p class="title">平均：</p>
+                            <p style="color:white;">25 ℃</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="block"><img class="block-img" src="./images/meter.png" alt="">
+                    <div class="content">
+                        <div class="text">
+                            <p class="title">水表：</p>
+                            <p style="color:white;">12 度</p>
+                        </div>
+                        <div class="text">
+                            <p class="title">电表：</p>
+                            <p style="color:white;">36 度</p>
+                        </div>
+                        <div class="text">
+                            <p class="title">费用：</p>
+                            <p style="color:white;">54 元</p>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-4 col-sm-6">
+                <div class="block"><img class="block-img" src="./images/controller.png" alt="">
+                    <div class="content">
+                        <div class="text">
+                            <p class="title">灯管：</p><button class="btn btn-success btn-lg" id="open-led" type="button">开启</button></div>
+                        <div class="text">
+                            <p class="title">灯管：</p><button class="btn btn-warning btn-lg" id="close-led" type="button">关闭</button></div>
+                        <div class="text">
+                            <p class="title">门禁：</p><button class="btn btn-success btn-lg" type="button">开启</button></div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-md-8 col-sm-12">
+                <div id="main" style="width: 100%;height:30vh;background-color: rgba(25,118,210,0.3);"></div>
+            </div>
+            <div class="col-md-4 col-sm-6" style="position:absolute;bottom:5px;right:5px;">
+                <div class="input-group">
+                    <span class="input-group-addon" id="equipmentId-aria">设备ID：</span>
+                    <input type="text" class="form-control" id="equipmentId" aria-describedby="equipmentId-aria" value="123456">
+                </div>
+            </div>
+            <script src="./javascripts/index.js"></script>
+        </div>
+    </div>
+</body>
+
+</html>

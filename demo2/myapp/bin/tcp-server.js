@@ -62,7 +62,6 @@ const server = net.createServer((socket)=>{
 
 server.on("error",(err)=>{
 	console.log(err)
-	deleteEquipment(socket.id,socket.addr)
 })
 
 //开启监听

@@ -53,7 +53,7 @@ function updateMyChart(time,value) {
 
 //接收实时数据
 ipcRenderer.on('equipment-data', (event, data) => {
-  console.log('equipment-data:',data) // prints "pong"
+  console.log('equipment-data:',data)
   data.forEach(d => {
     updateMyChart(d.time,d.value)
   });

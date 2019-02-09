@@ -169,5 +169,6 @@ module.exports={
 	addEquipment:addEquipment,
 	deleteEquipment:deleteEquipment,
 	findEquipment:findEquipment,
-	sentCommand:sentCommand
+	sentCommand:sentCommand,
+	subscribeEquipmentId:subscribeEquipmentId
 }

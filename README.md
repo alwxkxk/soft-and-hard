@@ -27,8 +27,8 @@
 
 ### 文件目录说明
 - 基础教程 : 各基础教程代码。详情查看该目录下的README.md。
-- demo1 ：demo1的源代码。详情查看该目录下的README.md。
-- demo2 : demo1的源代码。
+- demo1 ：demo1的源代码，详情查看该目录下的README.md。
+- demo2 : demo2的源代码，包含微信小程序、electron源代码，详情查看该目录下的README.md。
 - pm2.json : 使用pm2启动时的配置文件`pm2 start pm2.json`，启动前需要先安装项目依赖。
 
 ### 端口使用情况

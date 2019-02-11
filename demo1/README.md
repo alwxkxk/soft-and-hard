@@ -1,7 +1,7 @@
 # demo1
 ## 文件目录说明
 - myapp : nodejs代码
-- nodemcu : nodemcu代码 
+- nodemcu : nodemcu代码，使用Arduino IDE打开
 
 ## 使用说明 
 ```bash

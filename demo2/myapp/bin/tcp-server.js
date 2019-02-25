@@ -11,7 +11,7 @@ const tcpClient = require('./tcp-client.js')
 //创建服务器对象
 const server = net.createServer((socket)=>{
   //connect
-  let addr = socket.address().address + ':' + socket.address().port
+  let addr = socket.address().address + ':' + socket.remotePort
   console.log(addr," connected.")
 
   // receive data
@@ -93,7 +93,10 @@ function deleteEquipment(id,addr){
 		}
 	}
 	// 从数组中删除该设备
-	equipmentArray.splice(index,1)
+	if(index){
+		equipmentArray.splice(index,1)
+	}
+	
 }
 
 // 在列表中找到某个id、addr的设备，结果为数组，可能包含多个socket。

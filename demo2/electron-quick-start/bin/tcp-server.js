@@ -116,7 +116,7 @@ function deleteEquipment(id,addr){
 		}
 	}
 	// 从数组中删除该设备
-	if(index){
+	if(index != null){
 		equipmentArray.splice(index,1)
 	}
 }

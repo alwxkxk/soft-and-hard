@@ -32,6 +32,9 @@
 - pm2.json : 使用pm2启动时的配置文件`pm2 start pm2.json`，启动前需要先安装项目依赖。
 
 ### 端口使用情况
+- demo0.1-tcp: 9000
+- demo0.1-http: 8000
+
 - base-tcp1: 9001 （方便TCP基础学习时抓包所用。）
 
 - demo1-tcp: 9002

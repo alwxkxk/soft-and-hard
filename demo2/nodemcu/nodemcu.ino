@@ -22,6 +22,9 @@ void setup() {
   //连接WIFI
   WiFi.begin(ssid, password);
 
+  //设置读取socket数据时等待时间为100ms（默认值为1000ms，会显得硬件响应很慢）
+  client.setTimeout(100);
+
   //等待WIFI连接成功
   while (WiFi.status() != WL_CONNECTED) {
     Serial.println("WiFi connecting...");

@@ -21,7 +21,7 @@
 - 在demo1的基础上，demo2添加了MongoDB数据库、实时显示数据（websocket协议）、数据可视化(Echart图表)功能。
 ![demo2主要流程图](http://ww1.sinaimg.cn/large/005BIQVbgy1fzbotaayifj30lu0coab7.jpg)
 ## 其它说明
-本教程是基于hexo博客系统搭建的，所以也可以理解为IOT博客，上面写了物联网教程《软硬结合》以及一系列相关文章。
+- 此项目仅包含代码，教程文章都存放于个人博客项目中（基于hexo搭建的博客）：[https://github.com/alwxkxk/blog](https://github.com/alwxkxk/blog)
 <!-- - 这个教程之前是要本地浏览的形式做的，需要读者先clone此项目到本地，才能进行阅读，但发现好多新手会卡在github上。[旧版教程备份（已弃用）-百度云](https://pan.baidu.com/s/1TcUtfI5hFedj_RL6j8QacQ)
 - 为了降低阅读门槛，我重新制作并发布在线教程。[软硬结合-在线访问](https://www.scaugreen.cn/posts/44755/) -->
 

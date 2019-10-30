@@ -28,6 +28,10 @@ function init() {
     console.log('Connection closed.');
   });
 
+  client.on('error',(err)=>{
+		console.error(err)
+	})
+
 
 }
 

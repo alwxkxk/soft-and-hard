@@ -20,7 +20,8 @@ router.get('/equipmentId/:id', function(req, res, next) {
 router.get('/history/:id', function(req, res, next) {
   mongodb.find({id:req.params.id},(err,docs)=>{
     if(err){
-      res.send(err)
+      res.send([])
+      console.log(err)
     }
     else{
       let result = []

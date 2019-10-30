@@ -67,7 +67,9 @@ server.on("error",(err)=>{
 //开启监听
 server.listen({port: PORT,host: '0.0.0.0'}, () => {
 	console.log('demo1 tcp server running on', server.address())
-	tcpClient.init()
+	setTimeout(() => {
+		tcpClient.init()
+	}, 4000);
 })
 
 // 给列表添加设备

@@ -9,19 +9,19 @@ const socket = new WebSocket('ws://'+host);
 // const socket = new WebSocket('wss://'+host);
 
 // 如果建立连接
-socket.onopen=()=>{
+socket.onopen=function () {
   console.log("websocket connect!")
   let data = JSON.stringify({equipmentId:equipmentId})
   socket.send(data)
 }
 
 // 监听接收数据
-socket.onmessage=(msg)=>{
+socket.onmessage=function (msg) {
   console.log("receive:",msg.data)
   try {
     // 将JSON字符串反转为JSON对象
     let data = JSON.parse(msg.data)
-    data.forEach(d => {
+    data.forEach(function (d) {
       //将接收到的数据 更新到echart图表里
       updateMyChart(d.time,d.value)
     });
@@ -30,21 +30,21 @@ socket.onmessage=(msg)=>{
   }
 }
 
-socket.onclose=()=>{
+socket.onclose=function () {
   console.log("websocket close.")
 }
 
-socket.onerror=(event)=>{
+socket.onerror=function () {
   console.log("websocket error:",event)
 }
 
 
 //给开关灯按钮添加事件，发起请求 POST /led/:id
-$('#open-led').click(()=>{
+$('#open-led').click(function () {
   $.post('/led/'+equipmentId,{action:'open'})
 })
 
-$('#close-led').click(()=>{
+$('#close-led').click(function () {
   $.post('/led/'+equipmentId,{action:'close'})
 })
 
@@ -100,9 +100,9 @@ function updateMyChart(time,value) {
 }
 
 //请求历史数据
-$.get('/history/'+equipmentId,(data)=>{
+$.get('/history/'+equipmentId,function (data) {
   console.log("history:",data)
-  data.forEach((v)=>{
+  data.forEach(function (v) {
     updateMyChart(v.time,v.value)
   })
 })

@@ -5,7 +5,7 @@
 const char* ssid = "you-wifi";
 const char* password = "you-wifi-password";
 
-const char* host = "119.29.107.47";
+const char* host = "42.192.168.165";
 const int port = 9002;//demo1 tcp 使用 9002端口
 
 const char* id = "1234abcd";

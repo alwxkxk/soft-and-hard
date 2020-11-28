@@ -8,6 +8,11 @@ const socket = new WebSocket('ws://'+host);
 // 如果是部署到服务器并配置了SSL证书，应该使用wss协议 
 // const socket = new WebSocket('wss://'+host);
 
+$.get('/equipment-list',(data)=>{
+  console.log('设备列表：',data)
+})
+
+
 // 如果建立连接
 socket.onopen=function () {
   console.log("websocket connect!")

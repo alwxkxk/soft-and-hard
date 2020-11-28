@@ -42,5 +42,5 @@
 
 - demo2-tcp: 9003
 - demo2-http: 8002
-<!-- 因为微信小程序正式发布后通信是需要SSL证书，所以申请了证书并在nginx进行了配置，可访问[https://sh.scaugreen.cn](https://sh.scaugreen.cn) -->
+
 

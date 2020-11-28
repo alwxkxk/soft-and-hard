@@ -8,8 +8,8 @@ App({
   globalData: {
     // 初期调试时可以设置不检验合法域名，否则调用API时需要设置小程序的request、socket合法域名
     // 本机调试需要本机运行demo2，然后将API指向127.0.0.1
-    websocketURL: localDev ? 'ws://127.0.0.1:8002' : 'wss://sh.scaugreen.cn',
-    requestHost: localDev ? 'http://127.0.0.1:8002' : 'https://sh.scaugreen.cn',
+    websocketURL: localDev ? 'ws://127.0.0.1:8002' : 'wss://42.192.168.165',
+    requestHost: localDev ? 'http://127.0.0.1:8002' : 'https://42.192.168.165',
     equipmentId: '123456'
   }
 })

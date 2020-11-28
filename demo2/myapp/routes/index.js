@@ -9,6 +9,19 @@ router.get('/', function(req, res, next) {
   res.render('index', { title: '智慧宿舍-123456' });
 });
 
+/*获取连接设备列表 */
+router.get('/equipment-list', function(req, res, next) {
+  const list = []
+  tcpServer.equipmentArray.forEach(equipment=>{
+    const data = {
+      id:equipment.id,
+      addr:equipment.addr
+    }
+    list.push(data)
+  })
+  res.send({code:0,data:list})
+});
+
 // 显示某设备数据
 // GET /equipmentId/123456
 router.get('/equipmentId/:id', function(req, res, next) {

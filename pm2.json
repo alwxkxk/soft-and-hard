@@ -1,7 +1,7 @@
 {
   "apps":[
     {"name":"base-tcp1","script":"./基础教程/tcp1/tcp1.js"},
-    {"name":"demo0.1","script":"./demo0.1/index.js"},
+    {"name":"demo0.1","script":"./index.js","cwd":"./demo0.1"},
     {"name":"demo1","script":"./demo1/myapp/bin/www"},
     {"name":"demo2","script":"./demo2/myapp/bin/www"}
   ]

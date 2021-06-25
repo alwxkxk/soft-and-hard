@@ -141,7 +141,6 @@ function onError(error) {
   if (error.syscall !== 'listen') {
     throw error;
   }
-  console.error('demo0.1服务运行报错，有可能是重复运行导致的端口冲突。')
   console.error(error)
 
 }

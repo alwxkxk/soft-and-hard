@@ -1,7 +1,7 @@
 # demo0.1
 ```bash
 #启动
-node index
+node server.js
 
 #浏览器访问 127.0.0.1:8000
 #tcp客户端连接 127.0.0.1:9000

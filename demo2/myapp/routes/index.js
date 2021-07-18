@@ -6,7 +6,9 @@ const moment = require('moment')
 
 // 默认显示 id为123456的设备
 router.get('/', function(req, res, next) {
-  res.render('index', { title: '智慧宿舍-123456' });
+  // 默认是使用pug模板的，为了减少不必要的学习与降低入门门槛，改使用html。
+  res.sendFile('index.html',{root:"views"});
+  // res.render('index', { title: '智慧宿舍-123456' });
 });
 
 /*获取连接设备列表 */

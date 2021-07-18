@@ -20,6 +20,9 @@
 ![demo1示例](http://ww1.sinaimg.cn/large/005BIQVbgy1fzboqhds5sj30lu0co75a.jpg)
 - 在demo1的基础上，demo2添加了MongoDB数据库、实时显示数据（websocket协议）、数据可视化(Echart图表)功能。
 ![demo2主要流程图](http://ww1.sinaimg.cn/large/005BIQVbgy1fzbotaayifj30lu0coab7.jpg)
+
+
+
 ## 其它说明
 - 此项目仅包含代码，教程文章都存放于个人博客项目中（基于hexo搭建的博客）：[https://github.com/alwxkxk/blog](https://github.com/alwxkxk/blog)
 <!-- - 这个教程之前是要本地浏览的形式做的，需要读者先clone此项目到本地，才能进行阅读，但发现好多新手会卡在github上。[旧版教程备份（已弃用）-百度云](https://pan.baidu.com/s/1TcUtfI5hFedj_RL6j8QacQ)
@@ -42,5 +45,14 @@
 
 - demo2-tcp: 9003
 - demo2-http: 8002
+
+## V2.0 升级内容
+根据过去几年来，解决各位同学的问题后，为提升学习体验，于2021/7/17着手开始迭代升级为V2.0：
+- demo1 也使用HTTP轮询。
+- 不再使用pug模板，减少不必要的学习内容。
+- TCP服务器连接超时时间从10秒改成60秒，避免时间过短导致调试不方便。
+- 把原本引用CDN的外部资源全部下载放到内部引用。
+- 将教程从多条并行选择学习改变成有顺序地学习，避免读者迷惑不知所措。
+- 以前的演示都是无声的小视频，准备录制完整的有声视频。
 
 

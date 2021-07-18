@@ -10,7 +10,7 @@ socket.onopen=()=>{
 
 // 监听接收数据
 socket.onmessage=(msg)=>{
-  console.log("receive:",msg.data)
+  console.log("-->",msg.data)
   try {
     // 将JSON字符串反转为JSON对象
     let data = JSON.parse(msg.data)

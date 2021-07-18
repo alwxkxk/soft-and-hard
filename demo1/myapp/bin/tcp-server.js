@@ -2,7 +2,7 @@
 const net = require('net')
 const PORT = "9002"
 const equipmentArray = []
-const TIMEOUT = 10000; // 10秒没接收到数据就断开连接
+const TIMEOUT = 60*1000; // 60秒没接收到数据就断开连接
 //创建服务器对象
 const server = net.createServer((socket)=>{
   //connect
@@ -11,7 +11,7 @@ const server = net.createServer((socket)=>{
 
   // receive data
   socket.on("data",data=>{
-		let str = addr+" receive: " + data.toString('ascii')
+		let str = addr+" --> " + data.toString('ascii')
 		socket.lastValue = data.toString('ascii')
 		console.log(str)
 
@@ -52,7 +52,7 @@ server.on("error",(err)=>{
 
 //开启监听
 server.listen({port: PORT,host: '0.0.0.0'}, () => {
-  console.log('demo1 tcp server running on', server.address())
+  console.log('demo1 TCP服务器 启动：', server.address())
 })
 
 // 给列表添加设备

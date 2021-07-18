@@ -6,7 +6,6 @@ const TCP_PORT = "9000"
 const TIMEOUT = 60000;//tcp客户端超过60秒没发数据判为超时并断开连接
 let tcpClient=null;//tcp客户端
 
-
 // 创建http server，并传入回调函数:
 const httpServer = http.createServer(function (request, response) {
   // 回调函数接收request和response对象,
@@ -46,9 +45,6 @@ const httpServer = http.createServer(function (request, response) {
       response.end();
       break;
   }
-
-  
-
 });
 
 httpServer.listen(HTTP_PORT);
@@ -65,7 +61,7 @@ const tcpServer = net.createServer((socket)=>{
 
   // recieve data
   socket.on("data",data=>{
-    let str = addr+" receive: " + data.toString('ascii') + '\n'
+    let str = addr+" --> " + data.toString('ascii') + '\n'
     console.log(str)
     socket.lastValue = data.toString('ascii')
   })

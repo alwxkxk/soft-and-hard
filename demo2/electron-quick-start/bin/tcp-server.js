@@ -32,7 +32,7 @@ const server = net.createServer((socket)=>{
 
   // receive data
   socket.on("data",data=>{
-		let str = addr+" receive: " + data.toString('ascii')
+		let str = addr+" --> " + data.toString('ascii')
 		socket.lastValue = data.toString('ascii')
 		// console.log(str)
 

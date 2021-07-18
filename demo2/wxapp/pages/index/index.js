@@ -55,7 +55,7 @@ function initWebsocket(){
   })
 
   wx.onSocketMessage(function (msg) {
-    console.log('receive:', msg)
+    console.log('-->', msg)
     try {
       // 将JSON字符串反转为JSON对象
       let data = JSON.parse(msg.data)

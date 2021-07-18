@@ -2,7 +2,7 @@
 const net = require('net')
 const PORT = "9003"
 const equipmentArray = []
-const TIMEOUT = 10*1000; // 10秒没接收到数据就断开连接
+const TIMEOUT = 60*1000; // 60秒没接收到数据就断开连接
 const mongodb = require('./mongodb.js')
 const websocket = require('./websocket.js')
 const tcpClient = require('./tcp-client.js')
@@ -16,7 +16,7 @@ const server = net.createServer((socket)=>{
 
   // receive data
   socket.on("data",data=>{
-		let str = addr+" receive: " + data.toString('ascii')
+		let str = addr+" --> " + data.toString('ascii')
 		socket.lastValue = data.toString('ascii')
 		console.log(str)
 
@@ -66,10 +66,12 @@ server.on("error",(err)=>{
 
 //开启监听
 server.listen({port: PORT,host: '0.0.0.0'}, () => {
-	console.log('demo1 tcp server running on', server.address())
+	console.log('demo2 TCP服务器 启动：', server.address())
+	
+	// 5秒后启动demo2 tcp client 以生成数据。
 	setTimeout(() => {
 		tcpClient.init()
-	}, 4000);
+	}, 5000);
 })
 
 // 给列表添加设备

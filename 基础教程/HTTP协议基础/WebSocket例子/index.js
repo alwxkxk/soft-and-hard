@@ -25,7 +25,7 @@ socket.onopen=()=>{
 
 // 监听接收数据
 socket.onmessage=(message)=>{
-  console.log("receive:",message.data)
+  console.log("-->",message.data)
 }
 
 socket.onclose=()=>{

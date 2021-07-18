@@ -5,7 +5,7 @@
  * 描述：
  * 只是单纯地开启TCP服务器 9001端口：
  * 建立连接时返回：`${client addr} connected.\n`
- * 接收数据返回：`${client addr} receive:${data}`
+ * 接收数据返回：`${client addr} -->${data}`
  * 整个教程在不断迭代更新中：https://github.com/alwxkxk/soft-and-hard
  */
 
@@ -20,7 +20,7 @@ const server = net.createServer((socket)=>{
 
   // recieve data
   socket.on("data",data=>{
-    let str = addr+" receive: " + data.toString('ascii') + '\n'
+    let str = addr+" --> " + data.toString('ascii') + '\n'
     console.log(str)
     socket.write(str, 'ascii')
   })

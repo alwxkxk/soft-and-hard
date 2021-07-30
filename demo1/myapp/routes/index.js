@@ -1,12 +1,12 @@
 var express = require('express');
 var router = express.Router();
 var tcpServer = require('../bin/tcp-server.js');
-
+var path = require ('path');
 
 /* GET home page. */
 router.get('/', function(req, res, next) {
   // 默认是使用pug模板的，为了减少不必要的学习与降低入门门槛，改使用html。
-  res.sendFile('index.html',{root:"views"});
+  res.sendFile('index.html',{root:path.join(__dirname , '../views')});
 });
 
 // POST / 控制设备开关灯

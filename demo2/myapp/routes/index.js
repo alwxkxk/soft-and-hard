@@ -1,13 +1,15 @@
 var express = require('express');
 var router = express.Router();
-let mongodb = require('../bin/mongodb');
-let tcpServer = require('../bin/tcp-server.js');
+const mongodb = require('../bin/mongodb');
+const tcpServer = require('../bin/tcp-server.js');
+const path = require ('path');
 const moment = require('moment')
+
 
 // 默认显示 id为123456的设备
 router.get('/', function(req, res, next) {
   // 默认是使用pug模板的，为了减少不必要的学习与降低入门门槛，改使用html。
-  res.sendFile('index.html',{root:"views"});
+  res.sendFile('index.html',{root:path.join(__dirname , '../views')});
   // res.render('index', { title: '智慧宿舍-123456' });
 });
 

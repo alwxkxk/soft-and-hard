@@ -2,7 +2,7 @@
 const net = require('net')
 const PORT = "9003"
 const equipmentArray = []
-const TIMEOUT = 60*1000; // 60秒没接收到数据就断开连接
+const TIMEOUT = 30*1000; // 30秒没接收到数据就断开连接
 const mongodb = require('./mongodb.js')
 const websocket = require('./websocket.js')
 const tcpClient = require('./tcp-client.js')

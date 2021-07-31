@@ -1,9 +1,9 @@
 var express = require('express');
 var router = express.Router();
-const mongodb = require('../bin/mongodb');
-const tcpServer = require('../bin/tcp-server.js');
-const path = require ('path');
-const moment = require('moment')
+var mongodb = require('../bin/mongodb');
+var tcpServer = require('../bin/tcp-server.js');
+var path = require ('path');
+var moment = require('moment')
 
 
 // 默认显示 id为123456的设备

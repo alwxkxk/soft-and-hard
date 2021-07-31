@@ -29,7 +29,9 @@ router.get('/equipment-list', function(req, res, next) {
 // 显示某设备数据
 // GET /equipmentId/123456
 router.get('/equipmentId/:id', function(req, res, next) {
-  res.render('index', { title: '智慧宿舍-'+req.params.id });
+  // 默认是使用pug模板的，为了减少不必要的学习与降低入门门槛，改使用html。
+  res.sendFile('index.html',{root:path.join(__dirname , '../views')});
+  // res.render('index', { title: '智慧宿舍-'+req.params.id });
 });
 
 // 获取某设备的历史数据

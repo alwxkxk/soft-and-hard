@@ -12,15 +12,18 @@
 <body>
   <div class="row">
     <h2>设备控制</h2>
-    <div class="col-md-4 col-xs-12 col-sm-6">
-      <select class="form-control"></select>
+    <div class="row">
+      <div class="col-md-4 col-xs-12 col-sm-6">
+        <select id="dev-selector" class="form-control"></select>
+      </div>
+      <button class="col btn btn-success" id="open" type="button">开灯</button>
+      <button class="col btn btn-warning" id="close" type="button">关灯 </button>
     </div>
-    <button class="btn btn-success" id="open" type="button">开灯</button>
-    <button class="btn btn-warning" id="close" type="button">关灯 </button>
+
   </div>
   <div class="row">
     <h2>设备列表</h2>
-    <table class="table table-striped">
+    <table id="dev-table" class="table table-striped">
       <tbody>
         <tr>
           <th>#</th>

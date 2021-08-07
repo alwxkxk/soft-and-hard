@@ -1,12 +1,14 @@
+
 // 获取选中设备的信息
 function getEquipmentInfo() {
-  var str = $("select").val()
+  var selector = document.getElementById('dev-selector');
+  var str = selector.value
   if(!str){
     return console.log("无设备")
   }
   var addr = str.split(' - ')[0]
   var id = str.split(' - ')[1]
-  console.log(addr,id)
+  // console.log(addr,id)
   return {
     addr:addr,
     id:id
@@ -14,35 +16,107 @@ function getEquipmentInfo() {
   
 }
 
+function addSelectorData(equipment) {
+  // 给select 添加新数据
+  var selector = document.getElementById('dev-selector');
+  var option = document.createElement('option');
+  option.className = 'equipment-select-item'
+  option.innerText = equipment.addr+' - '+equipment.id
+  selector.append(option)
+}
+
+function addTableData(equipment) {
+    // 给table 添加新数据
+    var tbody = document.createElement('tbody');
+    tbody.className = 'equipment-table-item'
+    var tr = document.createElement('tr');
+
+    var td1 = document.createElement('td');
+    td1.innerText = '0'
+    var td2 = document.createElement('td');
+    td2.innerText = equipment.addr
+    var td3 = document.createElement('td');
+    td3.innerText = equipment.id
+    var td4 = document.createElement('td');
+    td4.innerText = equipment.lastValue
+    td4.setAttribute("style", "overflow: hidden;");
+
+    tr.append(td1)
+    tr.append(td2)
+    tr.append(td3)
+    tr.append(td4)
+    tbody.append(tr)
+    var devTable = document.getElementById('dev-table');
+    devTable.append(tbody)
+}
+
+function postData(equipment,actionString){
+  // 发送控制指令
+  if(!equipment){
+    return console.log('没设备，不可发送指令')
+  }
+  var httpRequest = null;
+  if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
+    httpRequest = new XMLHttpRequest();
+  } else if (window.ActiveXObject) { // IE 6 and older
+      httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+  }
+  var params = 'action='+actionString+'&addr='+equipment.addr+'&id='+equipment.id
+  httpRequest.open('POST', '/',true);
+  httpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
+  httpRequest.send(params);
+}
+
 // 点击按钮事件
-$("#open").click(function(){
+document.getElementById('open').onclick = ()=>{
   var equipment = getEquipmentInfo()
-  $.post("/", { action:"open",addr: equipment.addr, id: equipment.id } );
-});
- 
-$("#close").click(function(){
+  postData(equipment,'open')
+}
+
+document.getElementById('close').onclick = ()=>{
   var equipment = getEquipmentInfo()
-  $.post("/", { action:"close",addr: equipment.addr, id: equipment.id } );
-});
+  postData(equipment,'close')
+}
 
 function getData() {
-  // 获取数据
-  $.get("/equipmentArray",(res)=>{
-    $("option.equipment-select-item").remove();
-    $("tbody.equipment-table-item").remove();
-    res.forEach(equipment => {
-      //将设备数据转换成html元素添加到页面中
+  var httpRequest = null;
+  if (window.XMLHttpRequest) { // Mozilla, Safari, IE7+ ...
+    httpRequest = new XMLHttpRequest();
+  } else if (window.ActiveXObject) { // IE 6 and older
+      httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
+  }
 
-      //添加到选项中
-      $('select').append('<option class="equipment-select-item">'+equipment.addr+' - '+equipment.id+'</option>')
-  
-  
-      //添加到列表中
-      $('table').append('<tbody class="equipment-table-item"><tr><td>0</td><td>'+equipment.addr+
-      '</td><td>'+equipment.id+' </td><td style="overflow: hidden;">'+equipment.lastValue+'</td></tr></tbody>')
-    });
-    console.log(res)
-  });
+  httpRequest.onreadystatechange = ()=>{
+    if( httpRequest.readyState === 4){
+      // 0	UNSENT	代理被创建，但尚未调用 open() 方法。
+      // 1	OPENED	open() 方法已经被调用。
+      // 2	HEADERS_RECEIVED	send() 方法已经被调用，并且头部和状态已经可获得。
+      // 3	LOADING	下载中； responseText 属性已经包含部分数据。
+      // 4	DONE	下载操作已完成。
+
+      // 删除select里的旧数据
+      var selectItems = document.getElementsByClassName('equipment-select-item')
+      for (var i = 0; i < selectItems.length; i++) {
+        selectItems[i].remove()
+      }
+      // 删除table里的旧数据
+      var tableItems = document.getElementsByClassName('equipment-table-item')
+      for (var i = 0; i < tableItems.length; i++) {
+        tableItems[i].remove()
+      }
+
+      var responseData = JSON.parse(httpRequest.responseText)
+      responseData.forEach(equipment=>{
+        // 给select 添加新数据
+        addSelectorData(equipment)
+        // 给table 添加新数据
+        addTableData(equipment)
+      })
+
+    }
+  };
+  httpRequest.open('GET', '/equipmentArray');
+  httpRequest.send();
 }
 
 getData()

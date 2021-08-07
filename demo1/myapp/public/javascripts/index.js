@@ -62,7 +62,7 @@ function postData(equipment,actionString){
       httpRequest = new ActiveXObject("Microsoft.XMLHTTP");
   }
   var params = 'action='+actionString+'&addr='+equipment.addr+'&id='+equipment.id
-  httpRequest.open('POST', '/',true);
+  httpRequest.open('POST', '/');
   httpRequest.setRequestHeader('Content-type', 'application/x-www-form-urlencoded');
   httpRequest.send(params);
 }

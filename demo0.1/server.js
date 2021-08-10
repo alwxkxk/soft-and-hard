@@ -1,13 +1,13 @@
-const fs = require('fs');
-let http = require('http');
-const net = require('net');
-const HTTP_PORT = "8000";
-const TCP_PORT = "9000"
-const TIMEOUT = 60000;//tcp客户端超过60秒没发数据判为超时并断开连接
-let tcpClient=null;//tcp客户端
+var fs = require('fs');
+var http = require('http');
+var net = require('net');
+var HTTP_PORT = "8000";
+var TCP_PORT = "9000"
+var TIMEOUT = 30*1000;//tcp客户端超过30秒没发数据判为超时并断开连接
+var tcpClient=null;//tcp客户端
 
 // 创建http server，并传入回调函数:
-const httpServer = http.createServer(function (request, response) {
+var httpServer = http.createServer(function (request, response) {
   // 回调函数接收request和response对象,
   // 获得HTTP请求的method和url:
   console.log(request.method + ': ' + request.url);
@@ -29,15 +29,15 @@ const httpServer = http.createServer(function (request, response) {
       break;
     case "/data":
       // 获取数据
-      let data = getData() || "无数据";
+      var data = getData() || "无数据";
 
-      let addr = "无连接";
+      var addr = "无连接";
       if(tcpClient && tcpClient.addr){
         addr = tcpClient.addr
       }
       
       // 将结果转换成字符串再发出去
-      let result = JSON.stringify({addr:addr,data:data});
+      var result = JSON.stringify({addr:addr,data:data});
       response.end(result);
       break;
     default:
@@ -52,16 +52,16 @@ httpServer.on('error', onError);
 httpServer.on('listening', onListening);
 
 //创建TCP服务器
-const tcpServer = net.createServer((socket)=>{
+var tcpServer = net.createServer((socket)=>{
   //connect
-  let addr = socket.address().address + ':' + socket.address().port
-  console.log(addr," connect.")
+  var addr = socket.remoteAddress + ':' + socket.remotePort
+  console.log(addr," connect.",socket)
   socket.addr = addr
   tcpClient = socket
 
   // recieve data
   socket.on("data",data=>{
-    let str = addr+" --> " + data.toString('ascii') + '\n'
+    var str = addr+" --> " + data.toString('ascii') + '\n'
     console.log(str)
     socket.lastValue = data.toString('ascii')
   })

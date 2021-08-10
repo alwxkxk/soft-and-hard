@@ -1,14 +1,3 @@
-/**
- * 文件：base/tcp1/tcp1.js
- * 作者：alwxkxk
- * 修改时间：2018/10/07
- * 描述：
- * 只是单纯地开启TCP服务器 9001端口：
- * 建立连接时返回：`${client addr} connected.\n`
- * 接收数据返回：`${client addr} -->${data}`
- * 整个教程在不断迭代更新中：https://github.com/alwxkxk/soft-and-hard
- */
-
 const net = require('net')
 const PORT = "9001"
 

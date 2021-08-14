@@ -6,7 +6,7 @@ const TIMEOUT = 30*1000; // 30秒没接收到数据就断开连接
 //创建服务器对象
 const server = net.createServer((socket)=>{
   //connect
-  let addr = socket.address().address + ':' + socket.remotePort
+  let addr = socket.remoteAddress + ':' + socket.remotePort
   console.log(addr," connected.")
 
   // receive data

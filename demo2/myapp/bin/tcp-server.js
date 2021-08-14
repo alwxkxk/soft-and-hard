@@ -11,7 +11,7 @@ const tcpClient = require('./tcp-client.js')
 //创建服务器对象
 const server = net.createServer((socket)=>{
   //connect
-  let addr = socket.address().address + ':' + socket.remotePort
+  let addr = socket.remoteAddress + ':' + socket.remotePort
   console.log(addr," connected.")
 
   // receive data

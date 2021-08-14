@@ -3,7 +3,7 @@ const PORT = "9001"
 
 const server = net.createServer((socket)=>{
   //connect
-  let addr = socket.address().address + ':' + socket.address().port
+  let addr = socket.remoteAddress + ':' + socket.address().port
   let welcome =  addr + ' connected.\n'
   socket.write(welcome, 'ascii')
 

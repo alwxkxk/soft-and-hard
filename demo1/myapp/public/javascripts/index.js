@@ -20,7 +20,8 @@ function addSelectorData(equipment) {
   // 给select 添加新数据
   var selector = document.getElementById('dev-selector');
   var option = document.createElement('option');
-  option.className = 'equipment-select-item'
+  // 添加这个类名是方便后面删除时定位到这些元素
+  option.className = 'equipment-select-item' 
   option.innerText = equipment.addr+' - '+equipment.id
   selector.append(option)
 }
@@ -28,6 +29,7 @@ function addSelectorData(equipment) {
 function addTableData(equipment) {
     // 给table 添加新数据
     var tbody = document.createElement('tbody');
+    // 添加这个类名是方便后面删除时定位到这些元素
     tbody.className = 'equipment-table-item'
     var tr = document.createElement('tr');
 
@@ -94,12 +96,12 @@ function getData() {
       // 3	LOADING	下载中； responseText 属性已经包含部分数据。
       // 4	DONE	下载操作已完成。
 
-      // 删除select里的旧数据
+      // 删除select里的旧数据（根据类名来找到那些元素）
       var selectItems = document.getElementsByClassName('equipment-select-item')
       for (var i = 0; i < selectItems.length; i++) {
         selectItems[i].remove()
       }
-      // 删除table里的旧数据
+      // 删除table里的旧数据（根据类名来找到那些元素）
       var tableItems = document.getElementsByClassName('equipment-table-item')
       for (var i = 0; i < tableItems.length; i++) {
         tableItems[i].remove()
@@ -119,6 +121,7 @@ function getData() {
   httpRequest.send();
 }
 
+// 马上使用一次。
 getData()
 
 // 每一秒轮询一次

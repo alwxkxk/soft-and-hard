@@ -8,11 +8,11 @@
 </head>
 <body>
     <!-- 引入Echart脚本 -->
-  <script src="https://cdn.bootcss.com/echarts/4.2.0-rc.2/echarts.min.js"></script>
-  <!-- 为ECharts准备一个具备大小（宽高）的Dom -->
+  <script src="./echarts.min.js"></script>
+  <!-- 为ECharts准备一个具备大小（宽高）的DOM -->
   <div id="main" style="width: 600px;height:400px;"></div>
   <script type="text/javascript">
-      // 基于准备好的dom，初始化echarts实例
+      // 基于准备好的DOM，初始化echarts实例
       var myChart = echarts.init(document.getElementById('main'));
 
       // 指定图表的配置项和数据
@@ -20,6 +20,9 @@
         title: {
           text: '实时温度'
         },
+        // tooltip: {
+        //   trigger: 'axis'
+        // },
         xAxis: {
           type: 'category',
           data: []

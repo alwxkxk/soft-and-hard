@@ -98,14 +98,15 @@ function getData() {
 
       // 删除select里的旧数据（根据类名来找到那些元素）
       var selectItems = document.getElementsByClassName('equipment-select-item')
-      for (var i = 0; i < selectItems.length; i++) {
-        selectItems[i].remove()
-      }
+      selectItems.forEach(item=>{
+        item.remove()
+      })
+
       // 删除table里的旧数据（根据类名来找到那些元素）
       var tableItems = document.getElementsByClassName('equipment-table-item')
-      for (var i = 0; i < tableItems.length; i++) {
-        tableItems[i].remove()
-      }
+      tableItems.forEach(item=>{
+        item.remove()
+      })
 
       var responseData = JSON.parse(httpRequest.responseText)
       responseData.forEach(equipment=>{

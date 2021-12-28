@@ -16,6 +16,12 @@ function getEquipmentInfo() {
   
 }
 
+// 将下次框 选中的值 记录下来，刷新数据时再重新选上
+let selectValue = null
+document.getElementById('dev-selector').onchange=(val)=>{
+  selectValue = document.getElementById('dev-selector').value
+}
+
 function addSelectorData(equipment) {
   // 给select 添加新数据
   var selector = document.getElementById('dev-selector');
@@ -23,8 +29,15 @@ function addSelectorData(equipment) {
   // 添加这个类名是方便后面删除时定位到这些元素
   option.className = 'equipment-select-item' 
   option.innerText = equipment.addr+' - '+equipment.id
+  // 若与之前选中值一样，则添加选中标记
+  if(selectValue && option.innerText === selectValue){
+    option.selected = 'selected'
+  }
+
   selector.append(option)
 }
+
+
 
 function addTableData(equipment) {
     // 给table 添加新数据

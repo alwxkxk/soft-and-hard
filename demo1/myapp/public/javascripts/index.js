@@ -98,13 +98,13 @@ function getData() {
 
       // 删除select里的旧数据（根据类名来找到那些元素）
       var selectItems = document.getElementsByClassName('equipment-select-item')
-      selectItems.forEach(item=>{
+      Array.from(selectItems).forEach(item=>{
         item.remove()
       })
 
       // 删除table里的旧数据（根据类名来找到那些元素）
       var tableItems = document.getElementsByClassName('equipment-table-item')
-      tableItems.forEach(item=>{
+      Array.from(tableItems).forEach(item=>{
         item.remove()
       })
 

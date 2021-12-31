@@ -10,7 +10,7 @@ function deleteWebsocket(ws) {
     }
   })
   // 删除ws
-  if(wsIndex){
+  if(wsIndex !== undefined){
     wsList.splice(wsIndex,1)
     console.log("deleteWebsocket:",ws.ip)
   }

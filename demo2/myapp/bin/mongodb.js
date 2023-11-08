@@ -14,20 +14,22 @@ let mongodb ={
 mongodb.insert = function(data,callback) {
   //添加插入时间
   data.createdAt= new Date()
-  if(!dataObj[data.id]){
-    dataObj[data.id] = []
+  const id = String(data.id)
+  if(!dataObj[id]){
+    dataObj[id] = []
   }
 
-  dataObj[data.id].push(data)
+  dataObj[id].push(data)
   // 超过10个的数据删除
-  if(dataObj[data.id].length>10){
-    dataObj[data.id].shift()
+  if(dataObj[id].length>10){
+    dataObj[id].shift()
   }
 }
 
 // 查找数据
 mongodb.find=function (data,callback) {
-  callback(null,dataObj[data.id] || []);
+  const id = String(data.id)
+  callback(null,dataObj[id] || []);
 }
 
 

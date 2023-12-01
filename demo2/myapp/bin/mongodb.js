@@ -1,8 +1,12 @@
 // https://github.com/mongodb/node-mongodb-native
 const MongoClient = require('mongodb').MongoClient;
 
-// Connection URL
+
 const url = 'mongodb://localhost:27017';
+// NOTE:注意，部分网友会报错误: MongoNetworkError : failed to connect to server [localhost:270171] on first [Error:ECONNREFUSED ::1:27017]
+// 网友怀疑是nodejs版本过高导致的，换成低版本就正常。也可以替换成以下代码也能正常运行：
+// const url = 'mongodb://127.0.0.1:27017';
+
 // Database Name
 const dbName = 'demo2';
 

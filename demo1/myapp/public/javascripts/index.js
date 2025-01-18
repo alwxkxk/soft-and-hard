@@ -16,6 +16,12 @@ function getEquipmentInfo() {
   
 }
 
+// 将下次框 选中的值 记录下来，刷新数据时再重新选上
+let selectValue = null
+document.getElementById('dev-selector').onchange=(val)=>{
+  selectValue = document.getElementById('dev-selector').value
+}
+
 function addSelectorData(equipment) {
   // 给select 添加新数据
   var selector = document.getElementById('dev-selector');
@@ -23,8 +29,15 @@ function addSelectorData(equipment) {
   // 添加这个类名是方便后面删除时定位到这些元素
   option.className = 'equipment-select-item' 
   option.innerText = equipment.addr+' - '+equipment.id
+  // 若与之前选中值一样，则添加选中标记
+  if(selectValue && option.innerText === selectValue){
+    option.selected = 'selected'
+  }
+
   selector.append(option)
 }
+
+
 
 function addTableData(equipment) {
     // 给table 添加新数据
@@ -98,14 +111,15 @@ function getData() {
 
       // 删除select里的旧数据（根据类名来找到那些元素）
       var selectItems = document.getElementsByClassName('equipment-select-item')
-      for (var i = 0; i < selectItems.length; i++) {
-        selectItems[i].remove()
-      }
+      Array.from(selectItems).forEach(item=>{
+        item.remove()
+      })
+
       // 删除table里的旧数据（根据类名来找到那些元素）
       var tableItems = document.getElementsByClassName('equipment-table-item')
-      for (var i = 0; i < tableItems.length; i++) {
-        tableItems[i].remove()
-      }
+      Array.from(tableItems).forEach(item=>{
+        item.remove()
+      })
 
       var responseData = JSON.parse(httpRequest.responseText)
       responseData.forEach(equipment=>{

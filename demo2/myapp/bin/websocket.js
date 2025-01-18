@@ -10,7 +10,7 @@ function deleteWebsocket(ws) {
     }
   })
   // 删除ws
-  if(wsIndex){
+  if(wsIndex !== undefined){
     wsList.splice(wsIndex,1)
     console.log("deleteWebsocket:",ws.ip)
   }
@@ -53,6 +53,7 @@ function init(server) {
     ws.ip = req.connection.remoteAddress;
     console.log("websocket connection.  IP:",ws.ip)
     ws.on('message', (message)=>{
+      // 从前端接收到的ws数据。
       console.log('websocket received: %s', message);
       // ws.send('echo:'+message);
       try {

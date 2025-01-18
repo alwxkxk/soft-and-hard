@@ -16,11 +16,13 @@ const server = net.createServer((socket)=>{
 
   // receive data
   socket.on("data",data=>{
-		let str = addr+" --> " + data.toString('ascii')
-		socket.lastValue = data.toString('ascii')
-		console.log(str)
+	// 将接收到的数据作为最新的数据
+	let str = addr+" --> " + data.toString('ascii')
+	socket.lastValue = data.toString('ascii')
+	console.log(str)
 
-    // 接收的第一条数据为设备id
+    // 如果该socket没有id，就把当前数据赋值为id。
+	// 等效于接收的第一条数据作为其设备id
     if(!socket.id){
 			socket.id = data.toString('ascii')
 			socket.addr = addr
@@ -30,6 +32,7 @@ const server = net.createServer((socket)=>{
 			//保存所接收到的数据
 			mongodb.insert({id:socket.id,data:socket.lastValue},function (err) {
 				if(err){
+					// 保存数据失败只会影响历史数据的呈现。
 					console.log(socket.id,"保存数据失败：",err)
 				}
 			})

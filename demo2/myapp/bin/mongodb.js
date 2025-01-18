@@ -2,8 +2,6 @@ const MongoClient = require('mongodb').MongoClient;
 
 // Connection URL
 const url = 'mongodb://localhost:27017';
-// Database Name
-const dbName = 'demo2';
 
 let mongodb ={
   dbClient:null,
@@ -12,28 +10,39 @@ let mongodb ={
   find:null
 }
 
+// Database Name
+const dbName = 'demo2';
+
+const dbClient = new MongoClient(url);
+mongodb.dbClient = dbClient
+
+console.log('尝试连接数据库...')
+dbClient.connect().then(()=>{
+  mongodb.db = dbClient.db(dbName);
+  const collection = mongodb.db.collection('equipment-data');
+  //创建TTL（time to live） 索引，只保留一个小时内的数据，超出就自动删除。
+  collection.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 3600 } )
+
+  console.log('成功连接mongodb数据库。');
+}).catch(()=>{
+  console.error('连接数据库失败。')
+})
+
+// then,catch语法属于ES6的promise语法，需要读者自行学习。
 
 // 插入数据
 // data是一个对象
 mongodb.insert = function(data,callback) {
-  if(mongodb.dbClient && mongodb.dbClient.isConnected()){
-    // Get the documents collection
-    const collection = mongodb.db.collection('equipment-data');
-      // Insert some documents
-
+  if(!mongodb.db){
+    callback('数据库还没连接成功。')
+    return 
+  }
+    const collection = mongodb.db.collection('equipment-data')
     //添加插入时间
     data.createdAt= new Date()
-    collection.insertOne(data, function(err, result) {
-      if(err){
-        callback(err)
-      }
-      callback(null,result);
-    });
-
-  }
-  else{
-    callback('mongodb is not connected!')
-  }
+    collection.insertOne(data).catch(()=>{
+      console.log('mongodb保存数据失败。')
+    })
 }
 
 // 查找数据
@@ -42,47 +51,19 @@ const findOptions={
   sort:{createdAt:-1}//返回最晚生成的数据
 }
 mongodb.find=function (data,callback) {
-  if(mongodb.dbClient && mongodb.dbClient.isConnected()){
-    // Get the documents collection
-    const collection = mongodb.db.collection('equipment-data');
-
-    collection.find(data,findOptions).toArray(function(err, docs) {
-      if(err){
-        callback(err)
-      }
-      callback(null,docs);
-    });
+  if(!mongodb.db){
+    callback('数据库还没连接成功。')
+    return
   }
-  else{
-    callback('mongodb is not connected!')
-  }
-  
-}
 
-// 连接mongodb
-MongoClient.connect(url,{useNewUrlParser:true}, function(err, client) {
-  if(err){
-    return console.log('mongodb err:',err)
-  }
-  console.log("mongodb client connected successfully to server.");
+  // Get the documents collection
+  const collection = mongodb.db.collection('equipment-data');
 
-  // 连接mongodb中的数据库
-  mongodb.dbClient = client
-  mongodb.db = client.db(dbName);
-
-  let collection = mongodb.db.collection('equipment-data');
-  // 检查有无创建TTL（time to live） 索引，用于删除过期的数据。
-  collection.indexExists("createdAt_1",(err,result)=>{
-    if(err){
-      return console.log(err)
-    }
-    else if(!result){
-      console.log("create index: 'createdAt':expireAfterSeconds")
-      //只保留一个小时内的数据
-      collection.createIndex( { "createdAt": 1 }, { expireAfterSeconds: 3600 } )
-    }
+  const result = collection.find(data,findOptions).then(findData=>{
+    callback(null,findData.toArray());
+  }).catch(()=>{
+    console.error('寻找数据异常。')
   })
-});
-
+}
 
 module.exports=mongodb;

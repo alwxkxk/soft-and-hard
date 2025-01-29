@@ -1,4 +1,5 @@
 // https://github.com/mongodb/node-mongodb-native
+// 操作文档：https://www.mongodb.com/zh-cn/docs/drivers/node/current
 const MongoClient = require('mongodb').MongoClient;
 
 
@@ -51,20 +52,21 @@ const findOptions={
   limit:10,//返回最多10条数据
   sort:{createdAt:-1}//返回最晚生成的数据
 }
-mongodb.find=function (data,callback) {
+mongodb.find=async function (data,callback) {
   if(!mongodb.db){
     callback('数据库还没连接成功。')
     return
   }
 
-  // Get the documents collection
   const collection = mongodb.db.collection('equipment-data');
+  const result = []
+  const cursor = collection.find(data,findOptions)
 
-  const result = collection.find(data,findOptions).then(findData=>{
-    callback(null,findData.toArray());
-  }).catch(()=>{
-    console.error('寻找数据异常。')
-  })
+  for await (const item of cursor) {
+    result.push(item);
+  }
+  callback(null,result)
+
 }
 
 module.exports=mongodb;
